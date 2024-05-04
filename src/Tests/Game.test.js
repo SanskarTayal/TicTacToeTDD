@@ -2,8 +2,8 @@ import { render,screen,fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 import Board from "../Components/Board";
 
-describe("Game working tests", ()=>{
-    it("Should declare the winner",()=>{
+describe("Game Implementation tests", ()=>{
+    it("should declare the winner",()=>{
         const {getAllByTestId ,getByTestId} = render(<Board />);
         const squares = getAllByTestId("Square");
         fireEvent.click(squares[0]);
@@ -17,7 +17,7 @@ describe("Game working tests", ()=>{
 
         
     }),
-    it("Should declare the game Draw when no one wins",()=>{
+    it("should declare the game Draw when no one wins",()=>{
         const {getAllByTestId ,getByTestId} = render(<Board />);
         const squares = getAllByTestId("Square");
         fireEvent.click(squares[0]);

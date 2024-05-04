@@ -4,12 +4,12 @@ import '@testing-library/jest-dom/extend-expect';
 import Board from "../Components/Board";
 
 describe("Rendering the Board",()=>{
-    it("Should have a Status initially indicating X's Turn ",()=>{
+    it("should have a Status initially indicating X's Turn ",()=>{
     const{getByTestId}=render(<Board />);
     const Component=getByTestId('StatusSection');
     expect(Component).toHaveTextContent("Next player: X")})
 ,
-    it('Should have a empty Board made with 9 Squares',()=>{
+    it('should have a empty Board made with 9 Squares',()=>{
         const {getAllByTestId}= render(<Board />);
         const squares = getAllByTestId("Square");
         expect(squares.length).toBe(9);
@@ -17,7 +17,7 @@ describe("Rendering the Board",()=>{
 });
 
 describe("Board's Functionality",()=>{
-    it("Should rotate turns on click",()=>
+    it("should rotate turns on click",()=>
     {
         const {getAllByTestId ,getByTestId} = render(<Board />);
         const squares = getAllByTestId("Square");
@@ -29,7 +29,7 @@ describe("Board's Functionality",()=>{
 
     }),
 
-    it("Should not change square once filled",()=>
+    it("should not change square once filled",()=>
     {
         const {getAllByTestId ,getByTestId} = render(<Board />);
         const squares = getAllByTestId("Square");
