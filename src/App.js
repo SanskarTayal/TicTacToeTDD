@@ -1,3 +1,5 @@
-export default function Square() {
-  return <button className="square">X</button>;
-}
+import Board from "./Components/Board";
+
+export default function () {
+  return <Board />
+} 
