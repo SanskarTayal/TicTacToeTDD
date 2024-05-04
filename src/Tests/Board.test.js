@@ -7,7 +7,7 @@ describe("Rendering the Board",()=>{
     it("Should have a Status initially indicating X's Turn ",()=>{
     const{getByTestId}=render(<Board />);
     const Component=getByTestId('StatusSection');
-    expect(Component).toHaveTextContent("Next Turn of X")})
+    expect(Component).toHaveTextContent("Next player: X")})
 ,
     it('Should have a empty Board made with 9 Squares',()=>{
         const {getAllByTestId}= render(<Board />);
@@ -22,7 +22,7 @@ describe("Board's Functionality",()=>{
         const {getAllByTestId ,getByTestId} = render(<Board />);
         const squares = getAllByTestId("Square");
         fireEvent.click(squares[0]);
-        expect(getByTestId('StatusSection')).toHaveTextContent("Next Turn of O");
+        expect(getByTestId('StatusSection')).toHaveTextContent("Next player: O");
         expect(squares[0]).toHaveTextContent('X');
         fireEvent.click(squares[1]);
         expect(squares[1]).toHaveTextContent('O');
