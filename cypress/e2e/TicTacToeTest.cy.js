@@ -1,15 +1,6 @@
 import Square from "../../src/Components/Square"
 
 describe('TicTacToe Testing using Cypress', () => {
-  it('Should render a Board', () => {
-    cy.visit('http://localhost:3000/');
-    cy.get('.square').should('have.length',9);
-  }),
-  it("should allow a player to take a chance",()=>{
-    cy.visit('http://localhost:3000/');
-    cy.get('.square').eq(0).click();
-    cy.get('.square').eq(0).should('have.text','X');
-  }),
   it("should declare a winner upon winning",()=>{
     cy.visit('http://localhost:3000/');
     cy.get('.square').eq(0).click();

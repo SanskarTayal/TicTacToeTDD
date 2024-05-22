@@ -1,23 +1,22 @@
 import React, { useState } from "react"
 import Square from "./Square";
 import calculateWinner from "../util/CalculateWinner"
-export default function Board(){
-   const[count,setCount]= useState(0);
+export default function Board() {
+    const [count, setCount] = useState(0);
     const [xIsNext, setXIsNext] = useState(true);
-    const[squares, setsquares]=useState(Array(9).fill(null));
-    function handleClick(i){ 
-        
-        if(squares[i] || calculateWinner(squares))
+    const [squares, setsquares] = useState(Array(9).fill(null));
+    function handleClick(i) {
+
+        if (squares[i] || calculateWinner(squares))
             return;
-        setCount(count+1);
+        setCount(count + 1);
         const newSquares = squares.slice();
-        if(xIsNext){
-            newSquares[i]='X';
-           setXIsNext(false);
-            }
-        else
-        {
-            newSquares[i]='O';
+        if (xIsNext) {
+            newSquares[i] = 'X';
+            setXIsNext(false);
+        }
+        else {
+            newSquares[i] = 'O';
             setXIsNext(true);
         }
         setsquares(newSquares);
@@ -27,30 +26,31 @@ export default function Board(){
     if (winner) {
         status = 'Winner: ' + winner;
     }
-    else if(count === 9){
+    else if (count === 9) {
         status = 'Draw'
 
-    } 
+    }
     else {
         status = 'Next player: ' + (xIsNext ? 'X' : 'O');
     }
+    function generateRow(rowNo) {
+        const arr = [];
+        for (let i = (rowNo - 1) * 3; i < (rowNo * 3); i++)
+            arr.push(<Square value={squares[i]} onSquareClick={() => handleClick(i)} />);
+        return arr;
+
+    }
 
     return <>
-    <div className="Status" data-TestID='StatusSection'> {status} </div>
-    <div className="board-row"> 
-        <Square value={squares[0]} onSquareClick = {()=>handleClick(0)}/>
-        <Square value={squares[1]} onSquareClick = {()=>{handleClick(1)}}/>
-        <Square value={squares[2]} onSquareClick = {()=>{handleClick(2)}}/>
-    </div>
-    <div className="board-row"> 
-        <Square value={squares[3]} onSquareClick = {()=>{handleClick(3)}}/>
-        <Square value={squares[4]} onSquareClick = {()=>{handleClick(4)}}/>
-        <Square value={squares[5]} onSquareClick = {()=>{handleClick(5)}}/>
-    </div>
-    <div className="board-row"> 
-        <Square value={squares[6]} onSquareClick = {()=>{handleClick(6)}}/>
-        <Square value={squares[7]} onSquareClick = {()=>{handleClick(7)}}/>
-        <Square value={squares[8]} onSquareClick = {()=>{handleClick(8)}}/>
-    </div>
-        </>
+        <div className="Status" data-Testid='StatusSection'> {status} </div>
+        <div className="board-row">
+            {generateRow(1)}
+        </div>
+        <div className="board-row">
+            {generateRow(2)}
+        </div>
+        <div className="board-row">
+            {generateRow(3)}
+        </div>
+    </>
 };
